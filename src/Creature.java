@@ -2,7 +2,7 @@ class Creature {
 
 
     String name;
-    int power, agility, hp;
+    int power, agility, hp, turnCount;
 
     public Creature(String name, int power, int agility, int hp) {
         this.name = name;
@@ -22,10 +22,15 @@ class Creature {
                     System.out.println("Вы одерживаете победу!");
                     Main.deadMonsterCount++;
                     System.out.println("Вы убили " + Main.deadMonsterCount + " из 10!");
+                    Player.money += turnCount;
+                    System.out.println("Вы получаете " + turnCount + " монет");
+                    System.out.println("Теперь у вас " + Player.money + " монет");
+                    turnCount = 0;
                     Main.GameLoop();
                     break;
                 } else {
                     System.out.println(enemy.name + " получает ранение, его здоровье " + enemy.hp);
+                    turnCount++;
 
                 }
             } else System.out.println(enemy.name + " уворачивается!");
@@ -57,5 +62,6 @@ class Creature {
     void damage(int hit) {
         hp -= hit;
     }
+
 
 }
