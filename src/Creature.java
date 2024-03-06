@@ -1,8 +1,10 @@
+import java.util.Scanner;
+
 class Creature {
 
-
     String name;
-    int power, agility, hp, turnCount;
+    int power, agility, hp, gold, exp;
+
 
     public Creature(String name, int power, int agility, int hp) {
         this.name = name;
@@ -11,57 +13,15 @@ class Creature {
         this.hp = hp;
     }
 
-    void attack(Creature enemy, Creature hero) {
-        while (enemy.hp > 0 & hero.hp > 0) {
-            System.out.println(hero.name + " атакует!");
-            if (enemy.agility <= (Math.random() * 10) * 2) {
-                enemy.hp -= hero.power;
-                if (enemy.hp <= 0) {
-                    enemy.hp = 0;
-                    System.out.println(enemy.name + " погибает.");
-                    System.out.println("Вы одерживаете победу!");
-                    Main.deadMonsterCount++;
-                    System.out.println("Вы убили " + Main.deadMonsterCount + " из 10!");
-                    Player.money += turnCount;
-                    System.out.println("Вы получаете " + turnCount + " монет");
-                    System.out.println("Теперь у вас " + Player.money + " монет");
-                    turnCount = 0;
-                    Main.GameLoop();
-                    break;
-                } else {
-                    System.out.println(enemy.name + " получает ранение, его здоровье " + enemy.hp);
-                    turnCount++;
+    void attack(Creature enemy) { // метод атаки. врагом будет считаться любой недруг, если это герой, значит, его враг это гоблин или скелет, если это скелет или гоблин, то их враг это герой
+        while (true) {
+            if (enemy.hp > 0) {
+                if (agility < (Math.random() * 10)) {
+                    enemy.hp -= power;
+                    System.out.println(enemy.name + " получил ранение на " + power);
+                } else System.out.println(name + " промахнулся.");
 
-                }
-            } else System.out.println(enemy.name + " уворачивается!");
-
-            System.out.println(enemy.name + " атакует!");
-            if (hero.agility <= Math.random() * 10) {
-                hero.hp -= enemy.power;
-                if (hero.hp <= 0) {
-                    hero.hp = 0;
-                    System.out.println(hero.name + " погибает.");
-                    System.out.println("Вы проиграли");
-                    break;
-                } else
-                    System.out.println(hero.name + " получает ранение, его здоровье " + hero.hp);
-
-
-            } else System.out.println(hero.name + " уворачивается!");
-
+            }
         }
-
-
     }
-
-
-    void status() {
-        System.out.println("Имя " + name + "Сила " + power + "Ловкость " + agility + "Здоровье " + hp);
-    }
-
-    void damage(int hit) {
-        hp -= hit;
-    }
-
-
 }
