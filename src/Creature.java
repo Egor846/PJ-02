@@ -7,6 +7,7 @@ class Creature {
 
 
     public Creature(String name, int power, int agility, int hp) {
+
         this.name = name;
         this.power = power;
         this.agility = agility;
@@ -14,23 +15,35 @@ class Creature {
     }
 
 
-    void fight(Creature enemy) { // метод атаки. врагом будет считаться любой недруг, если это герой, значит, его враг это гоблин или скелет, если это скелет или гоблин, то их враг это герой
-        while (enemy.hp > 0) { // veroyatnost uvorota protivnika ishodya iz ego lovkosti
-            int hitPoint = (int) (this.power + Math.random() * 10) / 2;
-            if ((Math.random() * 10) > 8){
-                hitPoint *= 2;
-                System.out.println(enemy.name + " poluchaet kriticheskoe ranenie na " + hitPoint);
+    void attack(Creature enemy) { // метод атаки. врагом будет считаться любой недруг, если это герой, значит, его враг это гоблин или скелет, если это скелет или гоблин, то их враг это герой
+        {
+            while (enemy.hp > 0) {
+                int randomInt = (int) (Math.random() * 10);
+                int hitPoint = (power * 2) + randomInt;
+                if (randomInt < enemy.agility) {
+                    // enemi dodges attack
+                    System.out.println(name + " промахнулся.");
+                }
+                if (randomInt == 1) {
+                    // enemy takes double damage
+                    takeDamage(enemy, hitPoint * 2);
+                    System.out.println(enemy.name + " получает критический урон!");
+                }
+                takeDamage(enemy, hitPoint);
+                if (enemy.hp <= 0) {
+                    System.out.println(enemy.name + " погибает.");
+
+                }
             }
-            if (hitPoint < 3) {
-                hitPoint += 6;
-            }
-            attack(enemy, hitPoint);
+
         }
+
+        System.out.println("и");
 
     }
 
 
-    void attack(Creature enemy, int hitPoint) {
+    void takeDamage(Creature enemy, int hitPoint) {
         enemy.hp -= hitPoint;
         System.out.println(enemy.name + " получил ранение на " + hitPoint);
     }
