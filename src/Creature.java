@@ -21,30 +21,38 @@ class Creature {
                 int randomInt = (int) (Math.random() * 10);
                 int hitPoint = (power * 2) + randomInt;
                 if (randomInt < enemy.agility) {
-                    // enemi dodges attack
+
                     System.out.println(name + " промахнулся.");
-                }
-                if (randomInt == 1) {
-                    // enemy takes double damage
-                    takeDamage(enemy, hitPoint * 2);
-                    System.out.println(enemy.name + " получает критический урон!");
-                }
-                takeDamage(enemy, hitPoint);
+                }   // enemy dodges attack
+                int doubleHitPoint = 0;
+                if (agility > randomInt) {
+                    doubleHitPoint = (hitPoint * 2);
+                    takeDamage(enemy, hitPoint, doubleHitPoint);
+                } else takeDamage(enemy, hitPoint, doubleHitPoint);  // enemy takes double damage
+
                 if (enemy.hp <= 0) {
                     System.out.println(enemy.name + " погибает.");
 
-                }
+                }   //enemy is dying
             }
 
         }
 
-        System.out.println("и");
+        // player takes a drop from enemy
+
 
     }
 
 
-    void takeDamage(Creature enemy, int hitPoint) {
-        enemy.hp -= hitPoint;
-        System.out.println(enemy.name + " получил ранение на " + hitPoint);
+    void takeDamage(Creature enemy, int hitPoint, int doubleHitPoint) {
+
+        if (doubleHitPoint == 0) {
+            enemy.hp -= hitPoint;
+            System.out.println(enemy.name + " получил ранение на " + hitPoint + ".");
+        } else {
+            System.out.println(enemy.name + " получил критическое ранение на " + doubleHitPoint + "!");
+        }
+
+
     }
 }
