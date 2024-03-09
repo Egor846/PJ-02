@@ -15,32 +15,38 @@ class Creature {
     }
 
 
-    void attack(Creature enemy) { // метод атаки. врагом будет считаться любой недруг, если это герой, значит, его враг это гоблин или скелет, если это скелет или гоблин, то их враг это герой
-        {
-            while (enemy.hp > 0) {
-                int randomInt = (int) (Math.random() * 10);
-                int hitPoint = (power * 2) + randomInt;
-                if (randomInt < enemy.agility) {
+    Runnable r = new Runnable() {
+        @Override
+        public void run() {
 
-                    System.out.println(name + " промахнулся.");
-                }   // enemy dodges attack
-                int doubleHitPoint = 0;
-                if (agility > randomInt) {
-                    doubleHitPoint = (hitPoint * 2);
-                    takeDamage(enemy, hitPoint, doubleHitPoint);
-                } else takeDamage(enemy, hitPoint, doubleHitPoint);  // enemy takes double damage
+            void attack(Creature enemy) { // метод атаки. врагом будет считаться любой недруг, если это герой, значит, его враг это гоблин или скелет, если это скелет или гоблин, то их враг это герой
+                {
+                    while (enemy.hp > 0) {
+                        int randomInt = (int) (Math.random() * 10);
+                        int hitPoint = (power * 2) + randomInt;
+                        if (randomInt < enemy.agility) {
 
-                if (enemy.hp <= 0) {
-                    System.out.println(enemy.name + " погибает.");
+                            System.out.println(name + " промахнулся.");
+                        }   // enemy dodges attack
+                        int doubleHitPoint = 0;
+                        if (agility > randomInt) {
+                            doubleHitPoint = (hitPoint * 2);
+                            takeDamage(enemy, hitPoint, doubleHitPoint);
+                        } else takeDamage(enemy, hitPoint, doubleHitPoint);  // enemy takes double damage
 
-                }   //enemy is dying
+                        if (enemy.hp <= 0) {
+                            System.out.println(enemy.name + " погибает.");
+
+                        }   //enemy is dying
+                    }
+
+                }
+
+                // player takes a drop from enemy
+
+
             }
-
         }
-
-        // player takes a drop from enemy
-
-
     }
 
 
