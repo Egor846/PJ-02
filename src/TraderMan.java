@@ -3,4 +3,10 @@ public class TraderMan extends Human {
         super(name, power, agility, hp, gold);
 
     }
+
+    public void trade (Player player){
+
+        player.gold -= iPrice;
+    }
+
 }
