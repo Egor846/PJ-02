@@ -16,7 +16,8 @@ class Main {
 
 
         for (int i = 0; i < 1; i++) {
-            hero.attack(traderMan);
+            hero.attack.run();
+
         }
     }
 
