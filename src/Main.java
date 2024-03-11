@@ -15,9 +15,7 @@ class Main {
         Creature traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
 
 
-        for (int i = 0; i < 1; i++) {
-            hero.attack(traderMan);
-        }
+
     }
 
 

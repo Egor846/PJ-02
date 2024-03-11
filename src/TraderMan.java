@@ -6,6 +6,7 @@ public class TraderMan extends Human {
 
     public void trade (Player player){
 
+        int iPrice = 0;
         player.gold -= iPrice;
     }
 
