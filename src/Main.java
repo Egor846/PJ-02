@@ -14,7 +14,7 @@ class Main {
         Creature traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
 
         Fight fight = new Fight();
-        fight.heroAttack.run();
+        fight.run();
 
     }
 

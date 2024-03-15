@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-class Fight{
+class Fight implements Runnable{
     Creature hero = new Player(Player.getPlayerName(),8, 7, 300, 45, 0);
     Creature goblin = new Goblin("Гоблин", 5, 3, 300);
     Creature skeleton = new Skeleton("Скелет", 2, 3, 90);
@@ -16,8 +16,6 @@ class Fight{
         Random random = new Random();
         return monsters.get(random.nextInt(0,2));
 
-
-
     }
 
     void fight(Creature hero, Creature monster){
@@ -29,7 +27,7 @@ class Fight{
                     int hitPoint = (hero.power * 2) + randomInt;
                     int doubleHitPoint = 0;
 
-                    System.out.println("\n" + hero.name + " атакует!");
+                    System.out.println("\n" + hero.name + " атакует с силой " + hitPoint + "!");
 
                     // enemy dodges attack
                     if (randomInt < monster.agility) {
@@ -55,7 +53,7 @@ class Fight{
                     int hitPoint = (monster.power * 2) + randomInt;
                     int doubleHitPoint = 0;
 
-                    System.out.println("\n" + monster.name + " атакует!");
+                    System.out.println("\n" + monster.name + " атакует с силой " + hitPoint + "!");
 
                     // hero dodges attack
                     if (randomInt < hero.agility) {
@@ -76,11 +74,6 @@ class Fight{
             }
         }
 
-
-
-    }
-
-
     void takeDamage(Creature enemy, int hitPoint, int doubleHitPoint) {
 
         if (doubleHitPoint == 0) {
@@ -89,16 +82,19 @@ class Fight{
         } else {
             System.out.println(enemy.name + " получил критическое ранение на " + doubleHitPoint + "!");
         }
-
-
-        Runnable heroAttack = new Runnable() {
-            @Override
-            public synchronized void run() {
-
-                fight(hero, goblin);
-            }
-        };
     }
+
+    @Override
+    public void run() {
+        fight(hero, (Creature) randomMonster());
+    }
+}
+
+
+
+
+
+
 
 
 
