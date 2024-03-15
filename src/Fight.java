@@ -1,61 +1,81 @@
-import javax.print.attribute.standard.ReferenceUriSchemesSupported;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 class Fight{
-
-    Creature hero = new Player(Player.getPlayerName(),8, 7, 30, 45, 0);
-    Creature goblin = new Goblin("Гоблин", 5, 3, 30);
+    Creature hero = new Player(Player.getPlayerName(),8, 7, 300, 45, 0);
+    Creature goblin = new Goblin("Гоблин", 5, 3, 300);
     Creature skeleton = new Skeleton("Скелет", 2, 3, 90);
 
 
-    void fight(Creature hero, Creature monster) { // метод атаки. врагом будет считаться любой недруг, если это герой, значит, его враг это гоблин или скелет, если это скелет или гоблин, то их враг это герой
-        {
+    public Object randomMonster(){
 
-            // peredelat zanovo
-
-
-            if (monster.hp > 0) {
-                int randomInt = (int) (Math.random() * 10);
-                int hitPoint = (hero.power * 2) + randomInt;
-                if (randomInt < monster.agility) {
-                    System.out.println(hero.name + " промахнулся.");
-                }   // enemy dodges attack
-                int doubleHitPoint = 0;
-                if (monster.agility > randomInt) {
-                    doubleHitPoint = (hitPoint * 2);
-                    takeDamage(monster, hitPoint, doubleHitPoint);
-                } else takeDamage(monster, hitPoint, doubleHitPoint);  // enemy takes double damage
-
-                if (monster.hp <= 0) {
-                    System.out.println(monster.name + " погибает.");
-                    System.exit(0);
+        List<Object> monsters = new ArrayList<>();
+        monsters.add(goblin);
+        monsters.add(skeleton);
+        Random random = new Random();
+        return monsters.get(random.nextInt(0,2));
 
 
-                }   //enemy is dying
+
+    }
+
+    void fight(Creature hero, Creature monster){
+
+            while (hero.hp > 0 & monster.hp > 0) {
+                if (monster.hp > 0) {
+
+                    int randomInt = (int) (Math.random() * 10);
+                    int hitPoint = (hero.power * 2) + randomInt;
+                    int doubleHitPoint = 0;
+
+                    System.out.println("\n" + hero.name + " атакует!");
+
+                    // enemy dodges attack
+                    if (randomInt < monster.agility) {
+                        System.out.println(hero.name + " промахнулся.");
+                    } else if (monster.agility > randomInt) {
+                        doubleHitPoint = (hitPoint * 2);
+                        takeDamage(monster, hitPoint, doubleHitPoint);
+                    } else takeDamage(monster, hitPoint, doubleHitPoint);  // enemy takes double damage
+
+                    //enemy is dying
+                    if (monster.hp <= 0) {
+                        System.out.println(monster.name + " погибает.");
+                        System.exit(0);
+
+                        // player takes a drop from enemy
+                        //player takes exp
+                    }
+
+                }
+                if (hero.hp > 0) {
+
+                    int randomInt = (int) (Math.random() * 10);
+                    int hitPoint = (monster.power * 2) + randomInt;
+                    int doubleHitPoint = 0;
+
+                    System.out.println("\n" + monster.name + " атакует!");
+
+                    // hero dodges attack
+                    if (randomInt < hero.agility) {
+                        System.out.println(monster.name + " промахнулся.");
+                    } else if (hero.agility > randomInt) {
+                        doubleHitPoint = (hitPoint * 2);
+                        takeDamage(hero, hitPoint, doubleHitPoint);
+                    } else takeDamage(hero, hitPoint, doubleHitPoint);  // enemy takes double damage
+
+                    //player is dying
+                    if (hero.hp <= 0) {
+                        System.out.println("Вы погибли, игра проиграна!");
+                        System.exit(0);
+
+                    }
+                }
+
             }
-            if (hero.hp > 0) {
-                int randomInt = (int) (Math.random() * 10);
-                int hitPoint = (monster.power * 2) + randomInt;
-                if (randomInt < hero.agility) {
-                    System.out.println(monster.name + " промахнулся.");
-                }   // enemy dodges attack
-                int doubleHitPoint = 0;
-                if (hero.agility > randomInt) {
-                    doubleHitPoint = (hitPoint * 2);
-                    takeDamage(hero, hitPoint, doubleHitPoint);
-                } else takeDamage(hero, hitPoint, doubleHitPoint);  // enemy takes double damage
-
-                if (hero.hp <= 0) {
-                    System.out.println("Вы погибли, игра проиграна!");
-                    System.exit(0);
-
-
-
-                }   //player is dying
-            } fight(hero, monster);
-
         }
 
-        // player takes a drop from enemy
 
 
     }
@@ -71,14 +91,14 @@ class Fight{
         }
 
 
+        Runnable heroAttack = new Runnable() {
+            @Override
+            public synchronized void run() {
+
+                fight(hero, goblin);
+            }
+        };
     }
-    Runnable heroAttack = new Runnable() {
-        @Override
-         public synchronized void run() {
-
-            fight(hero, goblin);
-        }
-    };
 
 
 
@@ -86,7 +106,7 @@ class Fight{
 
 
 
-}
+
 
 
 
