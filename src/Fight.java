@@ -8,6 +8,7 @@ class Fight implements Runnable{
     Creature skeleton = new Skeleton("Скелет", 2, 3, 90);
 
 
+
     public Object randomMonster(){
 
         List<Object> monsters = new ArrayList<>();

@@ -16,6 +16,7 @@ class Main {
         Fight fight = new Fight();
         fight.run();
 
+
     }
 
 
