@@ -7,7 +7,8 @@ class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите имя персонажа: ");
         Player.setPlayerName(sc.nextLine());
-
+        System.out.println("Вы доблестный средневековый воин,\nвы можете пойти в темный лес,\nспасат лес от наестви монстров или айти к торов\n а припасами.");
+        System.out.println("Кда пт держим?");
 
 
 
