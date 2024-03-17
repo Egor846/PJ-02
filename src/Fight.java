@@ -4,13 +4,13 @@ import java.util.Random;
 
 class Fight implements Runnable{
     Creature hero = new Player(Player.getPlayerName(),8, 7, 300, 5, 0);
-    Creature goblin = new Goblin("Гоблин", 5, 3, 300);
-    Creature skeleton = new Skeleton("Скелет", 2, 3, 90);
 
+    long sleepThreadTime = 1000;
 
 
     public Object randomMonster(){
-
+        Creature goblin = new Goblin("Гоблин", 5, 3, 300);
+        Creature skeleton = new Skeleton("Скелет", 2, 3, 90);
         List<Object> monsters = new ArrayList<>();
         monsters.add(goblin);
         monsters.add(skeleton);
@@ -19,7 +19,7 @@ class Fight implements Runnable{
 
     }
 
-    void fight(Creature hero, Creature monster){
+    void fight(Creature hero, Creature monster) {
 
             while (hero.hp > 0 & monster.hp > 0) {
                 if (monster.hp > 0) {
@@ -28,11 +28,12 @@ class Fight implements Runnable{
                     int hitPoint = (hero.power * 2) + randomInt;
                     int doubleHitPoint = 0;
 
-                    System.out.println("\n" + hero.name + " атакует с силой " + hitPoint + "!");
+                    System.out.println("\n" + Player.getPlayerName() + " атакует с силой " + hitPoint + "!");
+
 
                     // enemy dodges attack
                     if (randomInt < monster.agility) {
-                        System.out.println(hero.name + " промахнулся.");
+                        System.out.println(Player.getPlayerName() + " промахнулся.");
                     } else if (monster.agility > randomInt) {
                         doubleHitPoint = (hitPoint * 2);
                         takeDamage(monster, hitPoint, doubleHitPoint);
@@ -41,14 +42,14 @@ class Fight implements Runnable{
                     //enemy is dying
                     if (monster.hp <= 0) {
                         System.out.println(monster.name + " погибает.");
-                        System.out.println("озовляем, вы олуете 5монет  10 оклв оыт");
+                        System.out.println("Поздравляем, вы получаете 5 монет и 10 очков опыта");
 
                         // player takes a drop from enemy
                         //player takes exp
 
                         hero.setGold(hero.getGold() + 5);
                         hero.setExp(hero.getExp() + 10);
-                        System.out.println("У вс " + hero.getGold() + " монет " + hero.getExp() + "/" + hero.getMaxExp() + " оыт.");
+                        System.out.println("У вас " + hero.getGold() + " монет " + hero.getExp() + "/" + hero.getMaxExp() + " очков опыта.");
 
                     }
 

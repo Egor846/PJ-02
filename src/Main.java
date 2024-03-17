@@ -4,20 +4,24 @@ class Main {
     static Scanner sc = new Scanner(System.in);
 
     static Fight fight = new Fight();
+
     public static void main(String[] args) {
 
 
         System.out.println("Введите имя персонажа: ");
+
+
         Player.setPlayerName(sc.nextLine());
 
-        System.out.println("Вы доблестный средневековый воин,\nвы можете пойти в темный лес,\nспасать лес от нашествия монстров или зайти к торговцу\n за припасами.");
+
+        System.out.println("Вы доблестный средневековый воин по имени " + Player.getPlayerName() + ",\nвы можете пойти в темный лес,\nспасать лес от нашествия монстров или зайти к торговцу\nза припасами.");
         game();
 
 
     }
 
-    public static void game(){
-        System.out.println("Куда путь держим?\n1 - В темный лес\n2 - К торговцу\n3 - Выо з гры");
+    public static void game() {
+        System.out.println("Куда путь держим?\n1 - В темный лес\n2 - К торговцу\n3 - Выход из игры");
 
         switch (sc.nextInt()) {
             case 1 -> {
@@ -30,12 +34,10 @@ class Main {
         }
 
 
-
         Creature traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
 
 
     }
-
 
 
 }

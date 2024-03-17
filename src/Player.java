@@ -7,6 +7,7 @@ static String playerName;
     }
 
     static public void setPlayerName(String playerName) {
+
         Player.playerName = playerName;
     }
 
