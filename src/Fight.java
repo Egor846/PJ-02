@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 class Fight implements Runnable{
-    Creature hero = new Player(Player.getPlayerName(),8, 7, 300, 45, 0);
+    Creature hero = new Player(Player.getPlayerName(),8, 7, 300, 5, 0);
     Creature goblin = new Goblin("Гоблин", 5, 3, 300);
     Creature skeleton = new Skeleton("Скелет", 2, 3, 90);
 
@@ -41,14 +41,19 @@ class Fight implements Runnable{
                     //enemy is dying
                     if (monster.hp <= 0) {
                         System.out.println(monster.name + " погибает.");
-                        System.exit(0);
+                        System.out.println("озовляем, вы олуете 5монет  10 оклв оыт");
 
                         // player takes a drop from enemy
                         //player takes exp
+
+                        hero.setGold(hero.getGold() + 5);
+                        hero.setExp(hero.getExp() + 10);
+                        System.out.println("У вс " + hero.getGold() + " монет " + hero.getExp() + "/" + hero.getMaxExp() + " оыт.");
+
                     }
 
                 }
-                if (hero.hp > 0) {
+                if (hero.hp > 0 & monster.hp > 0) {
 
                     int randomInt = (int) (Math.random() * 10);
                     int hitPoint = (monster.power * 2) + randomInt;
@@ -73,6 +78,7 @@ class Fight implements Runnable{
                 }
 
             }
+
         }
 
     void takeDamage(Creature enemy, int hitPoint, int doubleHitPoint) {
