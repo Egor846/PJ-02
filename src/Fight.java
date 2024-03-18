@@ -4,15 +4,29 @@ import java.util.Random;
 
 class Fight implements Runnable{
 
-    static Fight fight = new Fight();
-
 
     long sleepThreadTime = 1000;
 
+  Player hero;
+  Creature goblin, skeleton;
+
+    public Fight(long sleepThreadTime, Player hero) {
+        this.sleepThreadTime = sleepThreadTime;
+        this.hero = hero;
+    }
+
+
+
+    @Override
+    public void run() {
+        fight(hero, (Creature) randomMonster());
+    }
+
+
 
     public Object randomMonster(){
-        Creature goblin = new Goblin("Гоблин", 5, 3, 300);
-        Creature skeleton = new Skeleton("Скелет", 2, 3, 90);
+
+
         List<Object> monsters = new ArrayList<>();
         monsters.add(goblin);
         monsters.add(skeleton);
@@ -94,10 +108,7 @@ class Fight implements Runnable{
         }
     }
 
-    @Override
-    public void run() {
-        fight(Player.hero, (Creature) randomMonster());
-    }
+
 }
 
 

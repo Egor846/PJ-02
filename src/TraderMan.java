@@ -1,5 +1,5 @@
 public class TraderMan extends Human {
-    static Creature traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
+
     public TraderMan(String name, int power, int agility, int hp, int gold) {
         super(name, power, agility, hp, gold);
 
@@ -12,7 +12,9 @@ public class TraderMan extends Human {
         System.out.println("\n\tzhelaete priobresti?\n1 - da, kupit' zelie za 20 monet\n2 - net, poproschatsya i uity");
         switch (Main.sc.nextInt()){
             case 1 -> {
-                TraderMan.trade();
+                if (Player.getGold() > 19){
+                    Player.setGold(Player.getGold() -= 20);
+                }
             }
         }
     }

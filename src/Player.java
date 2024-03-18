@@ -1,6 +1,6 @@
 public class Player extends Human {
 
-    public static Creature hero = new Player(Player.getPlayerName(), 8, 7, 300, 5, 0, 1);
+
     static String playerName;
     static int potions;
 
@@ -25,4 +25,6 @@ public class Player extends Human {
     public static int getPotions() {
         return potions;
     }
+
+
 }

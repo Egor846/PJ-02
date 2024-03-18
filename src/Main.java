@@ -1,8 +1,13 @@
 import java.util.Scanner;
 
 class Main {
-    static Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
+    Fight fight = new Fight();
+    public Player hero = new Player(Player.getPlayerName(), 8, 7, 300, 5, 0, 1);
 
+    Creature goblin = new Goblin("Гоблин", 5, 3, 300);
+    Creature skeleton = new Skeleton("Скелет", 2, 3, 90);
+    Creature traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
 
 
     public static void main(String[] args) {
@@ -30,7 +35,7 @@ class Main {
                 game();
             }
             case 2 -> {
-                TraderMan.trade(Player.hero.getGold());
+                TraderMan.trade(hero.getGold());
             }
         }
 

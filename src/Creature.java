@@ -1,39 +1,15 @@
-
-import java.util.Scanner;
-
-class Creature {
-
+class Creature{
     String name;
-    int power, agility, hp, gold, exp;
+    int hp, power, agility;
 
-    public int getGold() {
-        return gold;
-    }
-
-    public void setGold(int gold) {
-        this.gold = gold;
-    }
-
-    public int getExp() {
-        return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
-    }
-
-    public Creature(String name, int power, int agility, int hp) {
-
+    public Creature(String name, int hp, int power, int agility) {
         this.name = name;
+        this.hp = hp;
         this.power = power;
         this.agility = agility;
-        this.hp = hp;
     }
 
-
-    public int getMaxExp() {
-        return 100;
+    void getDamage(int powerOfDamage){
+        this.hp -= powerOfDamage;
     }
-
-
 }
