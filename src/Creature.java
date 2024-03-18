@@ -34,4 +34,6 @@ class Creature {
     public int getMaxExp() {
         return 100;
     }
+
+
 }

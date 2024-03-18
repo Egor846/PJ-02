@@ -3,7 +3,9 @@ import java.util.List;
 import java.util.Random;
 
 class Fight implements Runnable{
-    Creature hero = new Player(Player.getPlayerName(),8, 7, 300, 5, 0);
+
+    static Fight fight = new Fight();
+
 
     long sleepThreadTime = 1000;
 
@@ -94,7 +96,7 @@ class Fight implements Runnable{
 
     @Override
     public void run() {
-        fight(hero, (Creature) randomMonster());
+        fight(Player.hero, (Creature) randomMonster());
     }
 }
 

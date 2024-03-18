@@ -3,7 +3,7 @@ import java.util.Scanner;
 class Main {
     static Scanner sc = new Scanner(System.in);
 
-    static Fight fight = new Fight();
+
 
     public static void main(String[] args) {
 
@@ -26,18 +26,20 @@ class Main {
         switch (sc.nextInt()) {
             case 1 -> {
 
-                Main.fight.run();
+                Fight.fight.run();
                 game();
-
-
+            }
+            case 2 -> {
+                TraderMan.trade(Player.hero.getGold());
             }
         }
 
 
-        Creature traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
+
 
 
     }
 
 
 }
+
