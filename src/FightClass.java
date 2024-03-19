@@ -34,7 +34,7 @@ class FightClass implements Runnable {
 
     void fight(Player hero, Creature oneOfMonsters) throws InterruptedException {
 
-        while (hero.hp > 0 & oneOfMonsters.hp > 0) {
+        while (hero.getHp() > 0 & oneOfMonsters.getHp() > 0) {
             if (oneOfMonsters.hp > 0) {
 
                 int randomInt = (int) (Math.random() * 10);
@@ -44,10 +44,10 @@ class FightClass implements Runnable {
                 System.out.println("\n" + hero.getName() + " атакует с силой " + hitPoint + "!");
 
 
-                if (randomInt < oneOfMonsters.agility) {
+                if (randomInt > oneOfMonsters.getAgility()) {
                     System.out.println(hero.getName() + " промахнулся.");
 
-                } else if (oneOfMonsters.agility > randomInt) {
+                } else if (oneOfMonsters.getAgility() > randomInt) {
                     doubleHitPoint = (hitPoint * 2);
                     takeDamage(oneOfMonsters, hitPoint, doubleHitPoint);
 
@@ -55,8 +55,8 @@ class FightClass implements Runnable {
 
                 Thread.sleep(sleepThreadTime);
 
-                if (oneOfMonsters.hp <= 0) {
-                    System.out.println(oneOfMonsters.name + " погибает.");
+                if (oneOfMonsters.getHp() <= 0) {
+                    System.out.println(oneOfMonsters.getName() + " погибает.");
                     System.out.println("Поздравляем, вы получаете 5 монет и 10 очков опыта");
 
 
@@ -67,19 +67,19 @@ class FightClass implements Runnable {
                 }
 
             }
-            if (hero.hp > 0 & oneOfMonsters.hp > 0) {
+            if (hero.getHp() > 0 & oneOfMonsters.getHp() > 0) {
 
                 int randomInt = (int) (Math.random() * 10);
-                int hitPoint = (oneOfMonsters.power * 2) + randomInt;
+                int hitPoint = (oneOfMonsters.getPower() * 2) + randomInt;
                 int doubleHitPoint = 0;
 
-                System.out.println("\n" + oneOfMonsters.name + " атакует с силой " + hitPoint + "!");
+                System.out.println("\n" + oneOfMonsters.getName() + " атакует с силой " + hitPoint + "!");
 
 
-                if (randomInt < hero.agility) {
-                    System.out.println(oneOfMonsters.name + " промахнулся.");
+                if (randomInt > hero.getAgility()) {
+                    System.out.println(oneOfMonsters.getName() + " промахнулся.");
 
-                } else if (hero.agility > randomInt) {
+                } else if (hero.getAgility() > randomInt) {
                     doubleHitPoint = (hitPoint * 2);
                     takeDamage(hero, hitPoint, doubleHitPoint);
                 } else takeDamage(hero, hitPoint, doubleHitPoint);
@@ -87,7 +87,7 @@ class FightClass implements Runnable {
                 Thread.sleep(sleepThreadTime);
 
 
-                if (hero.hp <= 0) {
+                if (hero.getHp() <= 0) {
                     System.out.println("Вы погибли, игра проиграна!");
                     System.exit(0);
 
@@ -101,10 +101,11 @@ class FightClass implements Runnable {
     void takeDamage(Creature someoneWhoFight, int hitPoint, int doubleHitPoint) {
 
         if (doubleHitPoint == 0) {
-            someoneWhoFight.hp -= hitPoint;
-            System.out.println(someoneWhoFight.name + " получил ранение на " + hitPoint + ".");
+            int someoneWhoFightHp = someoneWhoFight.getHp();
+            someoneWhoFight.setHp(someoneWhoFightHp -= hitPoint);
+            System.out.println(someoneWhoFight.getName() + " получил ранение на " + hitPoint + ".");
         } else {
-            System.out.println(someoneWhoFight.name + " получил критическое ранение на " + doubleHitPoint + "!");
+            System.out.println(someoneWhoFight.getName() + " получил критическое ранение на " + doubleHitPoint + "!");
         }
     }
 

@@ -9,14 +9,15 @@ class Main {
 
 
 
-  //  Creature traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
+  static Creature traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
 
 
     public static void main(String[] args) {
-
-
-
         System.out.println("Вы - отважный воин по имени " + hero.getName() + ".\nВаш долг защитить родную деревню от пробирающихся через лес скелетов и гоблинов.\nВы можете отправится в лес прямо сейчас или\nзайти к торговцу за зельями лечения.");
+
+        startMenu();
+    }
+    static void startMenu(){
         System.out.println("\tКуда путь держим?");
         System.out.println("1 - В лес. Вы готовы вступить в бой!\n2 - К торговцу. У вас есть какая-то тактика и вы ей придерживаетесь.\n3 - Выйти из игры. Вы хотите к маме.");
 
@@ -25,38 +26,14 @@ class Main {
                 FightClass fightInForest = new FightClass(hero);
                 fightInForest.run();
             }
+            case 2 -> {
+
+            }
+            case 3 -> {
+                System.exit(0);
+            }
+
         }
-
-
-
-
-//
-//        System.out.println("Вы доблестный средневековый воин по имени " + Player.getPlayerName() + ",\nвы можете пойти в темный лес,\nспасать лес от нашествия монстров или зайти к торговцу\nза припасами.");
-//        game();
-//
-//
-//    }
-//
-//    public static void game() {
-//        System.out.println("Куда путь держим?\n1 - В темный лес\n2 - К торговцу\n3 - Выход из игры");
-//
-//        switch (sc.nextInt()) {
-//            case 1 -> {
-//
-//                FightClass.fight.run();
-//                game();
-//            }
-//            case 2 -> {
-//                TraderMan.trade(hero.getGold());
-//            }
-//        }
-//
-//
-//
-//
-//
-//    }
-
 
     }
 }
