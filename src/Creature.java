@@ -1,4 +1,4 @@
-class Creature{
+public class Creature{
     String name;
     int hp, power, agility;
 

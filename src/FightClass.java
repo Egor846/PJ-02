@@ -4,7 +4,7 @@ import java.util.Random;
 
 class FightClass implements Runnable {
 
-    int sleepThreadTime = 1;
+    int sleepThreadTime = 2000;
     Player hero;
 
     public FightClass(Player hero) {
@@ -103,9 +103,9 @@ class FightClass implements Runnable {
         if (doubleHitPoint == 0) {
             int someoneWhoFightHp = someoneWhoFight.getHp();
             someoneWhoFight.setHp(someoneWhoFightHp -= hitPoint);
-            System.out.println(someoneWhoFight.getName() + " получил ранение на " + hitPoint + ".");
+            System.out.println(someoneWhoFight.getName() + " получил ранение на " + hitPoint + ". У него теперь " + someoneWhoFight.getHp());
         } else {
-            System.out.println(someoneWhoFight.getName() + " получил критическое ранение на " + doubleHitPoint + "!");
+            System.out.println(someoneWhoFight.getName() + " получил критическое ранение на " + doubleHitPoint + "! У него теперь " + someoneWhoFight.getHp());
         }
     }
 

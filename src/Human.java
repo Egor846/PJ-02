@@ -14,6 +14,9 @@ public class Human extends Creature {
 
     public void setGold(int gold) {
         this.gold = gold;
+        if (this.getGold() < 0){
+            setGold(0);
+        }
     }
 }
 

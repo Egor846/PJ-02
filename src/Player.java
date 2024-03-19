@@ -12,6 +12,9 @@ public class Player extends Human {
 
     }
 
+
+
+
     public int getMAX_HP() {
         return MAX_HP;
     }

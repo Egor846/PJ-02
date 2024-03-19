@@ -7,7 +7,4 @@ public class MyScannerForSettingPlayerName {
         return sc.nextLine();
     }
 
-    public void setSc(java.util.Scanner sc) {
-        this.sc = sc;
-    }
 }

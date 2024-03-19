@@ -1,35 +1,45 @@
-
 public class TraderMan extends Human {
-    int potionPrice = 20;
+    final int POTION_PRICE = -20;
+
+    public int getPotionPrice() {
+        return POTION_PRICE;
+    }
+
 
     public TraderMan(String name, int power, int agility, int hp, int gold) {
         super(name, power, agility, hp, gold);
 
     }
 
-    public int getPotionPrice() {
-        return potionPrice;
-    }
 
-    public void setPotionPrice(int potionPrice) {
-        this.potionPrice = potionPrice;
-    }
-
-    public void trade (int playerGold){
+    public void letsTrade() {
 
 
-        System.out.println("vi v hizhine torgovtsa.\ntorgovets predlagaet zeliya po 20 monet za flakon");
-        System.out.println("\n\tzhelaete priobresti?\n1 - da, kupit' zelie za 20 monet\n2 - net, poproschatsya i uity");
-        switch (Main.scanner.nextLine()){
-            case "1" -> {
-                if (playerGold > this.getPotionPrice()){
-                    Main.hero.setGold(playerGold -= this.getPotionPrice());
-                    System.out.println("Вы приобрели одно зелье. Всего у вас " + Main.hero.getPotions() + " .");
-                }
+        System.out.println("Вы в хижине торговца.\nТорговец предлагает зелья по 20 монет за флакон.");
+        System.out.println("\n\tЖелаете приобрести?\n1 - Да, купить зелье за 20 монет.\n2 - Нет, попрощаться и уйти.");
+
+        switch (Main.scanner.nextInt()) {
+            case 1 -> {
+                sellAPotion();
+                letsTrade();
             }
-            case "2" -> Main.startMenu();
+            case 2 -> Main.startMenu();
+
         }
     }
 
+    private void sellAPotion() {
+        if ( Main.hero.getGold() >= Math.abs( this.getPotionPrice() )) {
+            Main.hero.setGold(Integer.sum(Main.hero.getGold(), this.getPotionPrice()));
+            System.out.println("\tВы приобрели одно зелье.\n\tВсего у вас " + Main.hero.getPotions() + " шт зелий и\n\tосталось " + Main.hero.getGold() + " монет.\n");
+        } else if (Main.hero.getGold() <= Math.abs( this.getPotionPrice() )){
+            System.out.println("\n\tУ вас недостаточно монет.\n");
+            letsTrade();
+        }
+    }
 }
+
+
+
+
 
