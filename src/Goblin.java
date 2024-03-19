@@ -3,4 +3,7 @@ public class Goblin extends Creature{
         super(name, power, agility, hp);
 
     }
+    public static Goblin createAGoblin(){
+        return new Goblin("Гоблин", 5, 3, 300);
+    }
 }
