@@ -15,11 +15,7 @@ class FightClass implements Runnable {
 
     @Override
     public void run() {
-        try {
-            fight(hero, (Creature) generatingARandomMonster());
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        fight(hero, (Creature) generatingARandomMonster());
     }
 
 
@@ -32,13 +28,24 @@ class FightClass implements Runnable {
 
     }
 
+    void fight(Player hero, Creature oneOfMonsters){
+        // if hero and monster is alive the battle starts
+        if (hero.getHp() > 0 & oneOfMonsters.getHp() > 0){
+            System.out.println("each other apposite is alive");
+        }
+        System.out.println("someone is dead");
+        //if someone hit to someone, the someones hp is get damaged
+
+        // if someones hp get to the zero the battle is finished
+    }
+/*
     void fight(Player hero, Creature oneOfMonsters) throws InterruptedException {
 
         while (hero.getHp() > 0 & oneOfMonsters.getHp() > 0) {
-            if (oneOfMonsters.hp > 0) {
+            if (oneOfMonsters.getHp() > 0) {
 
                 int randomInt = (int) (Math.random() * 10);
-                int hitPoint = (hero.power * 2) + randomInt;
+                int hitPoint = (hero.getPower() * 2) + randomInt;
                 int doubleHitPoint = 0;
 
                 System.out.println("\n" + hero.getName() + " атакует с силой " + hitPoint + "!");
@@ -98,17 +105,8 @@ class FightClass implements Runnable {
 
     }
 
-    void takeDamage(Creature someoneWhoFight, int hitPoint, int doubleHitPoint) {
 
-        if (doubleHitPoint == 0) {
-            int someoneWhoFightHp = someoneWhoFight.getHp();
-            someoneWhoFight.setHp(someoneWhoFightHp -= hitPoint);
-            System.out.println(someoneWhoFight.getName() + " получил ранение на " + hitPoint + ". У него теперь " + someoneWhoFight.getHp());
-        } else {
-            System.out.println(someoneWhoFight.getName() + " получил критическое ранение на " + doubleHitPoint + "! У него теперь " + someoneWhoFight.getHp());
-        }
-    }
-
+*/
 
 }
 

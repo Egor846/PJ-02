@@ -6,7 +6,7 @@ public class Player extends Human {
 
     public Player(String name, int power, int agility, int hp, int gold, int exp, int potions, int maxHp) {
         super(name, power, agility, hp, gold);
-        this.name = name;
+        this.setName(name);
         this.exp = exp;
         this.potions = potions;
 

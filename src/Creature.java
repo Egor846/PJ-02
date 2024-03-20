@@ -1,15 +1,15 @@
 public class Creature{
-    String name;
-    int hp, power, agility;
+   private String name;
+    private int hp, power, agility;
 
-    public Creature(String name, int hp, int power, int agility) {
+    public Creature(String name, int power, int agility, int hp) {
         this.name = name;
         this.hp = hp;
         this.power = power;
         this.agility = agility;
     }
 
-    void getDamage(int powerOfDamage){
+    void takeDamage(int powerOfDamage){
         this.hp -= powerOfDamage;
     }
 
