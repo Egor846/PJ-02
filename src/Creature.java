@@ -1,5 +1,5 @@
-public class Creature{
-   private String name;
+public class Creature {
+    private String name;
     private int hp, power, agility;
 
     public Creature(String name, int power, int agility, int hp) {
@@ -9,7 +9,7 @@ public class Creature{
         this.agility = agility;
     }
 
-    void takeDamage(int powerOfDamage){
+    void takeDamage(int powerOfDamage) {
         this.hp -= powerOfDamage;
     }
 
@@ -27,7 +27,11 @@ public class Creature{
 
     public void setHp(int hp) {
         this.hp = hp;
+        if (getHp() < 0) {
+            setHp(0);
+        }
     }
+
 
     public int getPower() {
         return power;
@@ -43,5 +47,20 @@ public class Creature{
 
     public void setAgility(int agility) {
         this.agility = agility;
+    }
+
+    public void getAttacked(Creature enemy) {
+        int damageCoefficient = (int) ((Math.random() / 2) * 10);
+        int damagePoints = enemy.getPower() + damageCoefficient;
+        int criticalDamage = damagePoints * 2;
+        int criticalDamageCoefficient = (int) ((Math.random() * 10));
+        if (criticalDamageCoefficient == 9) {
+            setHp(getHp() - criticalDamage);
+            System.out.println(this.getName() + " poluchaet criticheskoe ranenie na " + criticalDamage + "!");
+        } else {
+            setHp(getHp() - damagePoints);
+            System.out.println(this.getName() + " poluchaet ranenie na " + damagePoints);
+        }
+
     }
 }

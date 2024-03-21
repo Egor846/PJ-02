@@ -1,21 +1,10 @@
 public class Skeleton extends Creature {
-    public Skeleton(String name, int hp, int power, int agility) {
-        super(name, hp, power, agility);
+    public Skeleton(String name, int power, int agility, int hp) {
+        super(name, power, agility, hp);
     }
 
-    int hp;
-
-    @Override
-    public int getHp() {
-        return hp;
-    }
-
-    @Override
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
 
     static Skeleton createASkeleton(){
-        return new Skeleton("Скелет", 90, 3, 2);
+        return new Skeleton("Скелет", 2, 3, 90);
     }
 }

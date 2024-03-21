@@ -2,25 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 class FightClass implements Runnable {
 
-    int sleepThreadTime = 2000;
-    Player hero;
 
-    public FightClass(Player hero) {
-        this.hero = hero;
-
-    }
-
-
-    @Override
-    public void run() {
-        fight(hero, (Creature) generatingARandomMonster());
-    }
-
-
-    public Object generatingARandomMonster() {
-        List<Object> monsters = new ArrayList<>();
+    public static Creature generatingARandomMonster() {
+        List<Creature> monsters = new ArrayList<>();
         monsters.add(Goblin.createAGoblin());
         monsters.add(Skeleton.createASkeleton());
         Random random = new Random();
@@ -28,15 +15,34 @@ class FightClass implements Runnable {
 
     }
 
-    void fight(Player hero, Creature oneOfMonsters){
-        // if hero and monster is alive the battle starts
-        if (hero.getHp() > 0 & oneOfMonsters.getHp() > 0){
-            System.out.println("each other apposite is alive");
-        }
-        System.out.println("someone is dead");
-        //if someone hit to someone, the someones hp is get damaged
+    int sleepThreadTime = 2000;
+    Player hero;
+    Creature oneOfMonsters;
 
-        // if someones hp get to the zero the battle is finished
+    public FightClass(Player hero, Creature oneOfMonsters) {
+        this.hero = hero;
+        this.oneOfMonsters = oneOfMonsters;
+
+    }
+
+    void fight(Player hero, Creature oneOfMonsters) {
+
+        while (hero.getHp() > 0 & oneOfMonsters.getHp() > 0) { // if hero and monster is alive the battle starts
+            if (hero.getHp() > 0 & oneOfMonsters.getHp() > 0) {
+
+           System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ",\nno on vas esche ne zametil.\n\tchto vi budete delat'?");
+                System.out.println("1 - Atakovat'\n2 - Ispol'zovat' zelie lecheniya (ostalos' " + hero.getPotions() + " sht.\n3 - Bezhat' v derevnyu.");
+                oneOfMonsters.getAttacked(hero);
+                hero.getAttacked(oneOfMonsters);
+
+
+            } else System.out.println("someone is dead");
+
+
+            //if someone hit to someone, the someones hp is get damaged
+
+            // if someones hp get to the zero the battle is finished
+        }
     }
 /*
     void fight(Player hero, Creature oneOfMonsters) throws InterruptedException {
@@ -107,6 +113,11 @@ class FightClass implements Runnable {
 
 
 */
+
+    @Override
+    public void run() {
+        fight(hero, (Creature) generatingARandomMonster());
+    }
 
 }
 
