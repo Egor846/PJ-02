@@ -30,10 +30,22 @@ class FightClass implements Runnable {
         while (hero.getHp() > 0 & oneOfMonsters.getHp() > 0) { // if hero and monster is alive the battle starts
             if (hero.getHp() > 0 & oneOfMonsters.getHp() > 0) {
 
-           System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ",\nno on vas esche ne zametil.\n\tchto vi budete delat'?");
-                System.out.println("1 - Atakovat'\n2 - Ispol'zovat' zelie lecheniya (ostalos' " + hero.getPotions() + " sht.\n3 - Bezhat' v derevnyu.");
-                oneOfMonsters.getAttacked(hero);
-                hero.getAttacked(oneOfMonsters);
+                System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ",\nno on vas esche ne zametil.\n");
+
+                System.out.println("chto vi budete delat'?");
+                hero.getHealthAndPotionsInfo();
+                System.out.println("1 - Viity na boy.\n2 - Ispol'zovat' zelie lecheniya.\n3 - Bezhat' v derevnyu.");
+
+                switch (Main.scanner.nextLine()) {
+                    case "1" -> fightMenu();
+                    case "2" -> hero.useHealPotion();
+                    case "3" -> {
+                        System.out.println("vi spasaetes' begstvom.");
+                        Main.startMenu();
+                    }
+                    default -> System.out.println("\nvi vibrali nevernyi variant. poprobuyte esche raz\n");
+                }
+
 
 
             } else System.out.println("someone is dead");
@@ -43,6 +55,24 @@ class FightClass implements Runnable {
 
             // if someones hp get to the zero the battle is finished
         }
+    }
+
+    private void fightMenu() {
+        System.out.println("pered vami stoit monstr.\n\tvi mozhete nanesti odinochyi udar, ili srazhatsya, poka odin iz vas ne umret");
+        System.out.println("1 - odinichniy udar\n2 - bitsya do kontsa");
+
+        switch (Main.scanner.nextLine()){
+            case "1" -> {
+                oneOfMonsters.getAttacked(hero);
+                hero.getAttacked(oneOfMonsters);
+                fightMenu();
+            }
+            case "2" -> {
+                run();
+            }
+        }
+        // odinochniy udar
+        // bitsya do kontsa
     }
 /*
     void fight(Player hero, Creature oneOfMonsters) throws InterruptedException {
@@ -116,7 +146,7 @@ class FightClass implements Runnable {
 
     @Override
     public void run() {
-        fight(hero, (Creature) generatingARandomMonster());
+        fight(hero, generatingARandomMonster());
     }
 
 }

@@ -30,6 +30,7 @@ public class Creature {
         if (getHp() < 0) {
             setHp(0);
         }
+
     }
 
 
