@@ -25,24 +25,27 @@ class FightClass implements Runnable {
 
     }
 
-    void fight(Player hero, Creature oneOfMonsters) {
+    void fight(Player hero, Creature oneOf (удалить обьект монстр, чтобы в последующих боях появлялся новый монстр)  Monsters) {
 
-        while (hero.isAlive() & oneOfMonsters.isAlive()) { // if hero and monster is alive the battle starts
+        while (hero.isAlive() & oneOfMonsters.isAlive()) {
             if (hero.isAlive() & oneOfMonsters.isAlive()) {
-                hero.attack();
-                oneOfMonsters.getAttacked(hero);
-                oneOfMonsters.attack();
-                hero.getAttacked(oneOfMonsters);
-            } else System.out.println("someone is dead");
+                System.out.println("------------------------------------------");
+                hero.attack(); // герой атакует
+                oneOfMonsters.getAttacked(hero); // монстр получает атаку от героя
+                if (!(hero.isAlive() & oneOfMonsters.isAlive())) { // проверка, живы ли соперники
 
+                    break;
+                }
+                oneOfMonsters.attack(); // монстр атакует
+                hero.getAttacked(oneOfMonsters); // герой получает атаку от монстра
 
-            //if someone hit to someone, the someones hp is get damaged
-
-            // if someones hp get to the zero the battle is finished
+            }
         }
+
     }
 
     void preFightMenu(){
+        oneOfMonsters = generatingARandomMonster();
         System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ",\nno on vas esche ne zametil.\n");
 
         System.out.println("chto vi budete delat'?");
@@ -70,7 +73,10 @@ class FightClass implements Runnable {
                 oneOfMonsters.getAttacked(hero);
                 fightMenu();
             }
-            case "2" -> run();
+            case "2" -> {
+                run();
+                preFightMenu();
+            }
             case "3" -> {
                 System.out.println("vi otbezhali ot protivnika");
                 preFightMenu();
@@ -84,7 +90,8 @@ class FightClass implements Runnable {
 
     @Override
     public void run() {
-        fight(hero, generatingARandomMonster());
+        fight(hero, oneOfMonsters);
+        Thread.currentThread().interrupt();
     }
 
 }
