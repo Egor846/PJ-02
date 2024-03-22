@@ -52,6 +52,8 @@ public class Player extends Human {
         } else System.out.println("u vas net zeliy dlya lecheniya");
     }
 
+
+
     public void getHealthAndPotionsInfo() {
         System.out.println("u vas " + this.getHp() + " zdorovia i\n" + getPotions() + " sht. zeliy");
     }

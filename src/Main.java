@@ -12,7 +12,7 @@ class Main {
     public static void main(String[] args) {
 
         FightClass f = new FightClass(hero, FightClass.generatingARandomMonster());
-        f.run();
+        f.preFightMenu();
 
 //        System.out.println("Вы - отважный воин по имени " + hero.getName() + ".\nВаш долг защитить родную деревню от пробирающихся через лес скелетов и гоблинов.\nВы можете отправится в лес прямо сейчас или\nзайти к торговцу за зельями лечения.");
 //
