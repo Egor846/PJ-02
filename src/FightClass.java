@@ -25,25 +25,6 @@ class FightClass implements Runnable {
 
     }
 
-    void fight(Player hero, Creature oneOf (удалить обьект монстр, чтобы в последующих боях появлялся новый монстр. генерация монстра в другом потоке который будет закрываться после его смерти)  Monsters) {
-
-        while (hero.isAlive() & oneOfMonsters.isAlive()) {
-            if (hero.isAlive() & oneOfMonsters.isAlive()) {
-                System.out.println("------------------------------------------");
-                hero.attack(); // герой атакует
-                oneOfMonsters.getAttacked(hero); // монстр получает атаку от героя
-                if (!(hero.isAlive() & oneOfMonsters.isAlive())) { // проверка, живы ли соперники
-
-                    break;
-                }
-                oneOfMonsters.attack(); // монстр атакует
-                hero.getAttacked(oneOfMonsters); // герой получает атаку от монстра
-
-            }
-        }
-
-    }
-
     void preFightMenu(){
         oneOfMonsters = generatingARandomMonster();
         System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ",\nno on vas esche ne zametil.\n");
@@ -87,7 +68,24 @@ class FightClass implements Runnable {
         // bitsya do kontsa
     }
 
+    void fight(Player hero, Creature oneOfMonsters) {
 
+        while (hero.isAlive() & oneOfMonsters.isAlive()) {
+            if (hero.isAlive() & oneOfMonsters.isAlive()) {
+                System.out.println("------------------------------------------");
+                hero.attack(); // герой атакует
+                oneOfMonsters.getAttacked(hero); // монстр получает атаку от героя
+                if (!(hero.isAlive() & oneOfMonsters.isAlive())) { // проверка, живы ли соперники
+
+                    break;
+                }
+                oneOfMonsters.attack(); // монстр атакует
+                hero.getAttacked(oneOfMonsters); // герой получает атаку от монстра
+
+            }
+        }
+
+    }
     @Override
     public void run() {
         fight(hero, oneOfMonsters);
