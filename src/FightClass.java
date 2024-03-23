@@ -27,15 +27,17 @@ class FightClass implements Runnable {
 
     void preFightMenu(){
         oneOfMonsters = generatingARandomMonster();
-        System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ",\nno on vas esche ne zametil.\n");
-
+        System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ".");
         System.out.println("chto vi budete delat'?");
         hero.getHealthAndPotionsInfo();
         System.out.println("1 - Viity na boy.\n2 - Ispol'zovat' zelie lecheniya.\n3 - Bezhat' v derevnyu.");
 
         switch (Main.scanner.nextLine()) {
             case "1" -> fightMenu();
-            case "2" -> hero.useHealPotion();
+            case "2" -> {
+                hero.useHealPotion();
+                fightMenu();
+            }
             case "3" -> {
                 System.out.println("vi spasaetes' begstvom.");
                 Main.startMenu();
@@ -76,8 +78,11 @@ class FightClass implements Runnable {
                 hero.attack(); // герой атакует
                 oneOfMonsters.getAttacked(hero); // монстр получает атаку от героя
                 if (!(hero.isAlive() & oneOfMonsters.isAlive())) { // проверка, живы ли соперники
-
-                    break;
+                     // выход из цикла, если один из них мёртв
+                    if (!hero.isAlive()){
+                        System.out.println("\n\t----------------------------------\n\t|Вы погибли в бою. Игра окончена.|\n\t----------------------------------");
+                        System.exit(0);
+                    }   break;
                 }
                 oneOfMonsters.attack(); // монстр атакует
                 hero.getAttacked(oneOfMonsters); // герой получает атаку от монстра

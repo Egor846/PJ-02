@@ -55,7 +55,7 @@ public class Creature {
             return true;
         } else {
             System.out.println(this.getName() + this.deathPhrase());
-            System.out.println("//////////////////////////////////////////\n" + this.getName() + " umiraet.");
+            System.out.println("//////////////////////////////////////////\n" + this.getName() + " умирает.");
             return false;
         }
     }

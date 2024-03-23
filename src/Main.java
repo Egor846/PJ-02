@@ -26,7 +26,7 @@ class Main {
         switch (scanner.nextInt()) {
             case 1 -> {
                 FightClass fightInForest = new FightClass(hero, FightClass.generatingARandomMonster());
-                fightInForest.run();
+                fightInForest.preFightMenu();
             }
             case 2 -> {
                 traderMan.letsTrade();

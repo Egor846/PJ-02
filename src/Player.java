@@ -54,6 +54,7 @@ public class Player extends Human {
 
 
 
+
     public void getHealthAndPotionsInfo() {
         System.out.println("u vas " + this.getHp() + " zdorovia i\n" + getPotions() + " sht. zeliy");
     }
