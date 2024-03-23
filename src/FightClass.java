@@ -25,7 +25,7 @@ class FightClass implements Runnable {
 
     }
 
-    void fight(Player hero, Creature oneOf (удалить обьект монстр, чтобы в последующих боях появлялся новый монстр)  Monsters) {
+    void fight(Player hero, Creature oneOf (удалить обьект монстр, чтобы в последующих боях появлялся новый монстр. генерация монстра в другом потоке который будет закрываться после его смерти)  Monsters) {
 
         while (hero.isAlive() & oneOfMonsters.isAlive()) {
             if (hero.isAlive() & oneOfMonsters.isAlive()) {
