@@ -30,7 +30,7 @@ class FightClass implements Runnable {
         System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ".");
         System.out.println("chto vi budete delat'?");
         hero.getHealthAndPotionsInfo();
-        System.out.println("1 - Viity na boy.\n2 - Ispol'zovat' zelie lecheniya.\n3 - Bezhat' v derevnyu.");
+        System.out.println("1 - Viyty na boy.\n2 - Ispol'zovat' zelie lecheniya.\n3 - Bezhat' v derevnyu.");
 
         switch (Main.scanner.nextLine()) {
             case "1" -> fightMenu();
