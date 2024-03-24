@@ -11,7 +11,7 @@ class FightClass implements Runnable {
         monsters.add(Goblin.createAGoblin());
         monsters.add(Skeleton.createASkeleton());
         Random random = new Random();
-        return monsters.get(random.nextInt(0, 2));
+        return monsters.get(random.nextInt(2));
 
     }
 
@@ -72,6 +72,7 @@ class FightClass implements Runnable {
 
     void fight(Player hero, Creature oneOfMonsters) {
 
+        Random r = new Random();
         while (hero.isAlive() & oneOfMonsters.isAlive()) {
             if (hero.isAlive() & oneOfMonsters.isAlive()) {
                 System.out.println("------------------------------------------");
