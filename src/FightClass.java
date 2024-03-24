@@ -42,7 +42,7 @@ class FightClass implements Runnable {
                 System.out.println("vi spasaetes' begstvom.");
                 Main.startMenu();
             }
-            default -> System.out.println("\nvi vibrali nevernyi variant. poprobuyte esche raz\n");
+            default -> System.out.println("\nvi vibrali nevernyi variant. poprobuyte esche raz.\n");
         }
     }
 
