@@ -48,7 +48,7 @@ class FightClass implements Runnable {
 
     private void fightMenu() {
         System.out.println("pered vami stoit " + oneOfMonsters.getName() + " ( " + oneOfMonsters.getHp() + " ).\n\tvi mozhete nanesti odinochyi udar, ili srazhatsya, poka odin iz vas ne umret");
-        System.out.println("1 - odinichniy udar\n2 - bitsya do kontsa\n3 - nabrat' distantsiyu");
+        System.out.println("1 - odinichniy udar\n2 - bitsya do kontsa.");
 
         switch (Main.scanner.nextLine()){
             case "1" -> {
@@ -60,11 +60,7 @@ class FightClass implements Runnable {
                 run();
                 preFightMenu();
             }
-            case "3" -> {
-                System.out.println("vi otbezhali ot protivnika");
-                preFightMenu();
 
-            }
         }
         // odinochniy udar
         // bitsya do kontsa
@@ -79,7 +75,12 @@ class FightClass implements Runnable {
                 hero.attack(); // герой атакует
                 oneOfMonsters.getAttacked(hero); // монстр получает атаку от героя
                 if (!(hero.isAlive() & oneOfMonsters.isAlive())) { // проверка, живы ли соперники
-                     // выход из цикла, если один из них мёртв
+                    if (!oneOfMonsters.isAlive()) {
+                        System.out.println(oneOfMonsters.getName() + FightClass.deathPhrase());
+                        System.out.println("//////////////////////////////////////////\n" + oneOfMonsters.getName() + " умирает."); // выход из цикла, если один из них мёртв
+                        hero.getReward();
+                        System.out.println("\n");
+                    }
                     if (!hero.isAlive()){
                         System.out.println("\n\t----------------------------------\n\t|Вы погибли в бою. Игра окончена.|\n\t----------------------------------");
                         System.exit(0);
@@ -90,6 +91,46 @@ class FightClass implements Runnable {
 
             }
         }
+
+    }
+
+    private static String deathPhrase() {
+        int i = (int) (Math.random() * 10);
+        switch (i) {
+            case 0 -> {
+                return " padaet navzhnich.";
+            }
+            case 1 -> {
+                return " otletaet na neskol'ko metrov.";
+            }
+            case 2 -> {
+                return " padaet zamertvo.";
+            }
+            case 3 -> {
+                return " poshatnulsya i ypal. ego golova ykatilas' v kusty.";
+            }
+            case 4 -> {
+                return " prevratilsya v neuznavaemoe mesevo.";
+            }
+            case 5 -> {
+                return " izdal posledniy vopl'";
+            }
+            case 6 -> {
+                return " nashel svoy smert' v lesu.";
+            }
+            case 7 -> {
+                return " pal v bou.";
+
+            }
+            case 8 -> {
+                return " usnul vechnym snom.";
+
+            }
+            case 9 -> {
+                return " bol'she ne vstanet.";
+            }
+        }
+        return null;
 
     }
     @Override

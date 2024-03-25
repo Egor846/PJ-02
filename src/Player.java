@@ -58,4 +58,11 @@ public class Player extends Human {
     public void getHealthAndPotionsInfo() {
         System.out.println("u vas " + this.getHp() + " zdorovia i\n" + getPotions() + " sht. zeliy");
     }
+
+    public void getReward() {
+        this.setGold(this.getGold() + 5);
+        this.setExp(this.getExp() + 25);
+        System.out.println("vi pobedili! vi poluchaete 5 monet i 25 ochkov opita" );
+
+    }
 }
