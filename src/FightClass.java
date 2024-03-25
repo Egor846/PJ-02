@@ -32,6 +32,10 @@ class FightClass implements Runnable {
         hero.getHealthAndPotionsInfo();
         System.out.println("1 - Viyty na boy.\n2 - Ispol'zovat' zelie lecheniya.\n3 - Bezhat' v derevnyu.");
 
+
+        Main.scanner.nextLine()afesf
+
+
         switch (Main.scanner.nextLine()) {
             case "1" -> fightMenu();
             case "2" -> {
@@ -48,22 +52,21 @@ class FightClass implements Runnable {
 
     private void fightMenu() {
         System.out.println("pered vami stoit " + oneOfMonsters.getName() + " ( " + oneOfMonsters.getHp() + " ).\n\tvi mozhete nanesti odinochyi udar, ili srazhatsya, poka odin iz vas ne umret");
-        System.out.println("1 - odinichniy udar\n2 - bitsya do kontsa.");
+        System.out.println("1 - bitsya do kontsa.\n2 - Бежать в деревню");
 
         switch (Main.scanner.nextLine()){
             case "1" -> {
-                hero.getAttacked(oneOfMonsters);
-                oneOfMonsters.getAttacked(hero);
-                fightMenu();
-            }
-            case "2" -> {
                 run();
                 preFightMenu();
             }
+            case "2" -> {
+                System.out.println("Вы спасаетесь бегством.");
+                Main.startMenu();
+            }
+            default -> System.out.println("Вы ввели неверное действие.");
 
         }
-        // odinochniy udar
-        // bitsya do kontsa
+
     }
 
     void fight(Player hero, Creature oneOfMonsters) {

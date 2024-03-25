@@ -8,13 +8,9 @@ class Main {
     static Player hero = new Player(playerName, 8, 7, 100, 21, 0, 1);
     static TraderMan traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
 
-//hero.getHp() 8. hero.getName() q. hero.getExp() 0. hero.getPotions() 1. hero.getAgility() 100. hero.getPower() 7
     public static void main(String[] args) {
 
-
-
         System.out.println("Вы - отважный воин по имени " + hero.getName() + ".\nВаш долг защитить родную деревню от пробирающихся через лес скелетов и гоблинов.\nВы можете отправится в лес прямо сейчас или\nзайти к торговцу за зельями лечения.");
-
         startMenu();
     }
 
