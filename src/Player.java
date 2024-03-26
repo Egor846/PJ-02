@@ -48,21 +48,21 @@ public class Player extends Human {
         if (this.getPotions() > 0) {
             this.setPotions(this.getPotions() - 1);
             this.setHp(this.getHp() + 20);
-            System.out.println("vi lechites'. vashe zdorovie vosstanovleno na 20");
-        } else System.out.println("u vas net zeliy dlya lecheniya");
+            System.out.println("Вы лечитесь. Ваше здоровье восстановлено на 20.");
+        } else System.out.println("У вас нет зелий для лечения.");
     }
 
 
 
 
     public void getHealthAndPotionsInfo() {
-        System.out.println("u vas " + this.getHp() + " zdorovia i\n" + getPotions() + " sht. zeliy");
+        System.out.println("У вас " + this.getHp() + " здоровья и\n" + getPotions() + " шт. зелий.");
     }
 
     public void getReward() {
         this.setGold(this.getGold() + 5);
         this.setExp(this.getExp() + 25);
-        System.out.println("vi pobedili! vi poluchaete 5 monet i 25 ochkov opita" );
+        System.out.println("Вы победили! вы получаете 5 монет и 25 очков опыта." );
 
     }
 }

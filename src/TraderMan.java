@@ -30,7 +30,7 @@ public class TraderMan extends Human {
 
     private void sellAPotion() {
         if ( Main.hero.getGold() >= Math.abs( this.getPotionPrice() )) {
-            Main.hero.setGold(Integer.sum(Main.hero.getGold(), this.getPotionPrice()));
+            Main.hero.setGold(Main.hero.getGold() + this.getPotionPrice());
             System.out.println("\tВы приобрели одно зелье.\n\tВсего у вас " + Main.hero.getPotions() + " шт зелий и\n\tосталось " + Main.hero.getGold() + " монет.\n");
         } else if (Main.hero.getGold() <= Math.abs( this.getPotionPrice() )){
             System.out.println("\n\tУ вас недостаточно монет.\n");

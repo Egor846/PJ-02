@@ -27,10 +27,10 @@ class FightClass implements Runnable {
 
     void preFightMenu(){
         oneOfMonsters = generatingARandomMonster();
-        System.out.println("vi videte, kak k vam dvizhetsya " + oneOfMonsters.getName() + ".");
-        System.out.println("chto vi budete delat'?");
+        System.out.println("Вы видите, как к вам движется " + oneOfMonsters.getName() + ".");
+        System.out.println("Что вы будете делать?");
         hero.getHealthAndPotionsInfo();
-        System.out.println("1 - Viyty na boy.\n2 - Ispol'zovat' zelie lecheniya.\n3 - Bezhat' v derevnyu.");
+        System.out.println("1 - Выйти на бой.\n2 - Использовать зелье лечения.\n3 - Бежать в деревню.");
 
 
         Main.scanner.nextLine(); // vipolneniu koda meshaet neopoznannyi simvol, kotoryi lovit etot scanner
@@ -43,16 +43,16 @@ class FightClass implements Runnable {
                 fightMenu();
             }
             case 3 -> {
-                System.out.println("vi spasaetes' begstvom.");
+                System.out.println("Вы спасаетесь бегством.");
                 Main.startMenu();
             }
-            default -> System.out.println("\nvi vibrali nevernyi variant. poprobuyte esche raz.\n");
+            default -> System.out.println("\nВы выбрали неверный вариант, попробуйте еще раз.\n");
         }
     }
 
     private void fightMenu() {
-        System.out.println("pered vami stoit " + oneOfMonsters.getName() + " ( " + oneOfMonsters.getHp() + " ).\n\tvi mozhete nanesti odinochyi udar, ili srazhatsya, poka odin iz vas ne umret");
-        System.out.println("1 - bitsya do kontsa.\n2 - Бежать в деревню");
+        System.out.println("Перед вами стоит " + oneOfMonsters.getName() + ".\n\tВы можете биться до конца или бежать в деревню.");
+        System.out.println("1 - Биться до конца.\n2 - Бежать в деревню");
 
         switch (Main.scanner.nextInt()){
             case 1 -> {
@@ -70,13 +70,13 @@ class FightClass implements Runnable {
     }
 
     private void wannaTryAgain() {
-        System.out.println("pozdravlyaem s pobedoi! hotite idti glubzhe v les?\n1 - da.\n2 - net.");
+        System.out.println("Поздравляем с победой! Хотете идти глубже в лес?\n1 - Да.\n2 - Нет.");
         System.out.println("error: " + Main.scanner.nextLine());
         switch (Main.scanner.nextLine()){
             case "1" -> preFightMenu();
             case "2" -> Main.startMenu();
             default -> {
-                System.out.println("vi vveli nevernoe deistvie");
+                System.out.println("Вы ввели неверное действие.");
                 wannaTryAgain();
             }
         }
@@ -118,36 +118,36 @@ class FightClass implements Runnable {
         int i = (int) (Math.random() * 10);
         switch (i) {
             case 0 -> {
-                return " padaet navzhnich.";
+                return " падает навзничь.";
             }
             case 1 -> {
-                return " otletaet na neskol'ko metrov.";
+                return " отлетает на несколько метров.";
             }
             case 2 -> {
-                return " padaet zamertvo.";
+                return " падает замертво.";
             }
             case 3 -> {
-                return " poshatnulsya i ypal. ego golova ykatilas' v kusty.";
+                return " пошатнулся и упал. Его голова укатилась в кусты.";
             }
             case 4 -> {
-                return " prevratilsya v neuznavaemoe mesevo.";
+                return " превратился в неузнаваемое месево.";
             }
             case 5 -> {
-                return " izdal posledniy vopl'";
+                return " издалпоследний вопль";
             }
             case 6 -> {
-                return " nashel svoy smert' v lesu.";
+                return " нашел свою смерть в лесу.";
             }
             case 7 -> {
-                return " pal v bou.";
+                return " пал в бою.";
 
             }
             case 8 -> {
-                return " usnul vechnym snom.";
+                return " уснул вечным сном.";
 
             }
             case 9 -> {
-                return " bol'she ne vstanet.";
+                return " больше не встанет.";
             }
         }
         return null;
@@ -160,7 +160,7 @@ class FightClass implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        Thread.currentThread().interrupt();
+
     }
 
 }

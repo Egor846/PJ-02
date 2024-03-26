@@ -59,7 +59,7 @@ public class Creature {
 
 
         public void attack(){
-            System.out.println(this.getName() + " atakuet");
+            System.out.println(this.getName() + " атакует");
 }
 
     public void getAttacked(Creature enemy) {
@@ -69,10 +69,10 @@ public class Creature {
         int criticalDamageCoefficient = (int) ((Math.random() * 10));
         if (criticalDamageCoefficient == 9) {
             this.setHp(getHp() - criticalDamage);
-            System.out.println(this.getName() + " poluchaet criticheskoe ranenie na " + criticalDamage + "!");
+            System.out.println(this.getName() + " получает критическое ранение на " + criticalDamage + "!");
         } else {
             this.setHp(getHp() - damagePoints);
-            System.out.println(this.getName() + " poluchaet ranenie na " + damagePoints);
+            System.out.println(this.getName() + " получает ранение на " + damagePoints);
         }
 
     }
