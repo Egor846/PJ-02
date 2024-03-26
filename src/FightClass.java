@@ -33,16 +33,16 @@ class FightClass implements Runnable {
         System.out.println("1 - Viyty na boy.\n2 - Ispol'zovat' zelie lecheniya.\n3 - Bezhat' v derevnyu.");
 
 
-        Main.scanner.nextLine()afesf
+        Main.scanner.nextLine(); // vipolneniu koda meshaet neopoznannyi simvol, kotoryi lovit etot scanner
 
 
-        switch (Main.scanner.nextLine()) {
-            case "1" -> fightMenu();
-            case "2" -> {
+        switch (Main.scanner.nextInt()) {
+            case 1 -> fightMenu();
+            case 2 -> {
                 hero.useHealPotion();
                 fightMenu();
             }
-            case "3" -> {
+            case 3 -> {
                 System.out.println("vi spasaetes' begstvom.");
                 Main.startMenu();
             }
@@ -54,12 +54,12 @@ class FightClass implements Runnable {
         System.out.println("pered vami stoit " + oneOfMonsters.getName() + " ( " + oneOfMonsters.getHp() + " ).\n\tvi mozhete nanesti odinochyi udar, ili srazhatsya, poka odin iz vas ne umret");
         System.out.println("1 - bitsya do kontsa.\n2 - Бежать в деревню");
 
-        switch (Main.scanner.nextLine()){
-            case "1" -> {
+        switch (Main.scanner.nextInt()){
+            case 1 -> {
                 run();
-                preFightMenu();
+                wannaTryAgain();
             }
-            case "2" -> {
+            case 2 -> {
                 System.out.println("Вы спасаетесь бегством.");
                 Main.startMenu();
             }
@@ -69,14 +69,30 @@ class FightClass implements Runnable {
 
     }
 
-    void fight(Player hero, Creature oneOfMonsters) {
+    private void wannaTryAgain() {
+        System.out.println("pozdravlyaem s pobedoi! hotite idti glubzhe v les?\n1 - da.\n2 - net.");
+        System.out.println("error: " + Main.scanner.nextLine());
+        switch (Main.scanner.nextLine()){
+            case "1" -> preFightMenu();
+            case "2" -> Main.startMenu();
+            default -> {
+                System.out.println("vi vveli nevernoe deistvie");
+                wannaTryAgain();
+            }
+        }
+    }
 
+    void fight(Player hero, Creature oneOfMonsters) throws InterruptedException {
+        final long DURATION_OF_TURN = 1;
         Random r = new Random();
         while (hero.isAlive() & oneOfMonsters.isAlive()) {
             if (hero.isAlive() & oneOfMonsters.isAlive()) {
                 System.out.println("------------------------------------------");
                 hero.attack(); // герой атакует
                 oneOfMonsters.getAttacked(hero); // монстр получает атаку от героя
+
+                Thread.sleep(DURATION_OF_TURN);
+
                 if (!(hero.isAlive() & oneOfMonsters.isAlive())) { // проверка, живы ли соперники
                     if (!oneOfMonsters.isAlive()) {
                         System.out.println(oneOfMonsters.getName() + FightClass.deathPhrase());
@@ -91,6 +107,7 @@ class FightClass implements Runnable {
                 }
                 oneOfMonsters.attack(); // монстр атакует
                 hero.getAttacked(oneOfMonsters); // герой получает атаку от монстра
+                Thread.sleep(DURATION_OF_TURN);
 
             }
         }
@@ -138,7 +155,11 @@ class FightClass implements Runnable {
     }
     @Override
     public void run() {
-        fight(hero, oneOfMonsters);
+        try {
+            fight(hero, oneOfMonsters);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Thread.currentThread().interrupt();
     }
 
