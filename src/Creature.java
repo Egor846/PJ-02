@@ -74,7 +74,9 @@ public class Creature {
         int damagePoints = enemy.getPower() + damageCoefficient;
         int criticalDamage = damagePoints * 2;
         int criticalDamageCoefficient = (int) ((Math.random() * 10));
-        if (criticalDamageCoefficient == 9) {
+        if( ( this.getAgility() * 3 ) > r.nextInt(101)){
+            System.out.println(enemy.getName() + " промаxнулся.");
+        } else if (criticalDamageCoefficient == 9) {
             this.setHp(getHp() - criticalDamage);
             System.out.println(this.getName() + " получает критическое ранение на " + criticalDamage + "!");
         } else {

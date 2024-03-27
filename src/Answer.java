@@ -9,7 +9,7 @@ public class Answer {
         if (scanner.hasNextInt()) {
             option = scanner.nextInt();
         } else {
-            System.out.println("Вы ввели неверное действие: " + option);
+            System.out.println("Вы ввели неверное действие.");
             getOption();
         }
 

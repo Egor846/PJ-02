@@ -69,7 +69,10 @@ class FightClass implements Runnable {
     private void wannaTryAgain() {
         System.out.println("Поздравляем с победой! Хотите идти глубже в лес?\n1 - Да.\n2 - Нет.");
         switch (Answer.getOption()) {
-            case 1 -> preFightMenu();
+            case 1 -> {
+                System.out.println("Вас зовет дорога приключений!");
+                preFightMenu();
+            }
             case 2 -> Main.startMenu();
             default -> {
                 System.out.println("Вы ввели неверное действие.");

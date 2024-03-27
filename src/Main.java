@@ -6,7 +6,7 @@ class Main {
     static MyScannerForSettingPlayerName sc = new MyScannerForSettingPlayerName(); // мне пришлось так сделать, потомучто Идея ругалась, что я не могу использовать нестатичное из статичного, и моих монстров звали так же, как и главного героя. Создавать в классе героя отдельный playerName, затыкая в конструкторе поле name null'ом считаю неправильным использованием наследования
     static Scanner scanner = new Scanner(System.in);
     static String playerName = sc.getSc();
-    static Player hero = new Player(playerName, 8, 7, 100, 21, 0, 1);
+    static Player hero = new Player(playerName, 8, 7, 1, 21, 0, 1);
     static TraderMan traderMan = new TraderMan("Моршу", 10, 10, 9001, 10000);
 
 
@@ -32,9 +32,8 @@ class Main {
             case 3 -> {
                 System.exit(0);
             }
-            case 4 -> {
-                System.out.println("hero.getHp() " + hero.getHp() + ". hero.getName() " + hero.getName() + ". hero.getExp() " + hero.getExp() + ". hero.getPotions() " + hero.getPotions() + ". hero.getAgility() " + hero.getAgility() + ". hero.getPower() " + hero.getPower());
-            }
+
+
 
         }
 
