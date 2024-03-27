@@ -14,11 +14,11 @@ public class TraderMan extends Human {
 
     public void letsTrade() {
 
-
+        Main.hero.getInfo();
         System.out.println("Вы в хижине торговца.\nТорговец предлагает зелья по 20 монет за флакон.");
         System.out.println("\n\tЖелаете приобрести?\n1 - Да, купить зелье за 20 монет.\n2 - Нет, попрощаться и уйти.");
 
-        switch (Main.scanner.nextInt()) {
+        switch (Answer.getOption()) {
             case 1 -> {
                 sellAPotion();
                 letsTrade();
@@ -31,7 +31,8 @@ public class TraderMan extends Human {
     private void sellAPotion() {
         if ( Main.hero.getGold() >= Math.abs( this.getPotionPrice() )) {
             Main.hero.setGold(Main.hero.getGold() + this.getPotionPrice());
-            System.out.println("\tВы приобрели одно зелье.\n\tВсего у вас " + Main.hero.getPotions() + " шт зелий и\n\tосталось " + Main.hero.getGold() + " монет.\n");
+            Main.hero.setPotions(Main.hero.getPotions() + 1);
+            System.out.println("\tВы приобрели одно зелье.");
         } else if (Main.hero.getGold() <= Math.abs( this.getPotionPrice() )){
             System.out.println("\n\tУ вас недостаточно монет.\n");
             letsTrade();

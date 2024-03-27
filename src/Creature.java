@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Creature {
     private String name;
     private int hp, power, agility;
@@ -31,6 +33,7 @@ public class Creature {
             setHp(0);
         }
 
+
     }
 
 
@@ -51,18 +54,22 @@ public class Creature {
     }
 
     boolean isAlive() {
-        if (this.getHp() > 0) {
-            return true;
-        } else { return false;
+        if (this.getHp() <= 0) {
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+            System.out.println(this.getName() + deathPhrase());
+            return false;
         }
+        return true;
     }
 
 
-        public void attack(){
-            System.out.println(this.getName() + " атакует");
-}
+    public void attack() {
+        System.out.println(this.getName() + " атакует");
 
-    public void getAttacked(Creature enemy) {
+    }
+
+    public void getAttackedBy(Creature enemy) {
+        Random r = new Random();
         int damageCoefficient = (int) ((Math.random() / 2) * 10);
         int damagePoints = enemy.getPower() + damageCoefficient;
         int criticalDamage = damagePoints * 2;
@@ -74,6 +81,44 @@ public class Creature {
             this.setHp(getHp() - damagePoints);
             System.out.println(this.getName() + " получает ранение на " + damagePoints);
         }
+    }
 
+    private static String deathPhrase() {
+        int i = (int) (Math.random() * 10);
+        switch (i) {
+            case 0 -> {
+                return " падает навзничь.";
+            }
+            case 1 -> {
+                return " отлетает на несколько метров.";
+            }
+            case 2 -> {
+                return " падает замертво.";
+            }
+            case 3 -> {
+                return " пошатнулся и упал. Его голова укатилась в кусты.";
+            }
+            case 4 -> {
+                return " превратился в неузнаваемое месево.";
+            }
+            case 5 -> {
+                return " издал последний вопль";
+            }
+            case 6 -> {
+                return " нашел свою смерть в лесу.";
+            }
+            case 7 -> {
+                return " пал в бою.";
+
+            }
+            case 8 -> {
+                return " уснул вечным сном.";
+
+            }
+            case 9 -> {
+                return " больше не встанет.";
+            }
+        }
+        return null;
     }
 }
